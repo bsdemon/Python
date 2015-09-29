@@ -1,7 +1,7 @@
 import asyncio
 import time
 from collections import Counter
-from bg_webservers_common import get_hosts, HTTP_REQUEST_TEMPLATE, detect_webserver_from_response
+from connect import get_hosts, HTTP_REQUEST_TEMPLATE, detect_webserver_from_response
 
 MAX_BYTES_TO_READ = 2048
 
@@ -29,7 +29,7 @@ def get_webserver_for_host(hostname: str, webservers: Counter):
     server = detect_webserver_from_response(response)
     webservers[server] += 1
     writer.close()
-    print("Completed: {}".format(hostname))
+    print("Completed: {} - {}".format(hostname, server))
 
 
 if __name__ == "__main__":
